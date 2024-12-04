@@ -90,14 +90,6 @@ for k1 in range(0,K):
     trainset_active.append({'x':  u_0,'y': u})
 
 
-# Generate Passive Training Samples
-n_train = K**2
-trainset_passive = []
-for i in range(0,n_train):
-    u_0= GRF(alpha,beta,gamma,N)
-    u = solver(L, u_0, Nt, nu)
-    trainset_passive.append({'x':  u_0,'y': u})
-
 
 # Generate Test Samples
 n_test = 100
