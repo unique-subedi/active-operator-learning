@@ -1,5 +1,4 @@
 import sys
-sys.path.append("data-generation")
 import numpy as np
 from scipy.sparse.linalg import spsolve
 from scipy.fftpack import dctn
