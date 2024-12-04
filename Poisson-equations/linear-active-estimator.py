@@ -1,8 +1,10 @@
 import sys
 import numpy as np
-from scipy.sparse.linalg import spsolve
+from scipy.sparse import diags, eye, kron
+from scipy.sparse.linalg import inv, spsolve
 from scipy.fftpack import dctn
 from scipy.fftpack import idctn
+from matplotlib import pyplot as plt
 
 
 def Laplacian(N):
@@ -34,6 +36,25 @@ def gen_cosines(N, k1, k2):
 
 
 
+def GRF(alpha, beta, gamma, N):
+    # Random variables in KL expansion
+    xi = np.random.randn(N, N)
+
+    K1, K2 = np.meshgrid(np.arange(N), np.arange(N))
+
+    # Define the (square root of) eigenvalues of the covariance operator
+    coef = alpha**(1/2) *(4*np.pi**2 * (K1**2 + K2**2) + beta)**(-gamma / 2)
+
+    # Construct the KL coefficients
+    L = N * coef * xi
+
+    #to make sure that the random field is mean 0
+    L[0, 0] = 0
+
+    return idctn(L, type =2)
+
+
+
 N = 64
 L = Laplacian(N)
 alpha = 50**2
@@ -42,7 +63,6 @@ gamma=2
 
 
 
-# Generate active training data
 K = 15 # n=K^2 training samples
 trainset_active = []
 for k1 in range(0,K):
@@ -53,7 +73,7 @@ for k1 in range(0,K):
     u[1:N,1:N]=C.reshape((N-1,N-1))
     trainset_active.append({'x': f,'y': u})
 
-
+n_test=100
 testset = []
 for i in range(0,n_test):
     f = GRF(alpha,beta,gamma,N)
