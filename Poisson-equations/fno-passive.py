@@ -1,8 +1,16 @@
 import sys
 import numpy as np
-from scipy.sparse.linalg import spsolve
+from scipy.sparse import diags, eye, kron
+from scipy.sparse.linalg import inv, spsolve
 from scipy.fftpack import dctn
 from scipy.fftpack import idctn
+from matplotlib import pyplot as plt
+
+
+import neuraloperator
+import torch
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 
 from torch.utils.data import DataLoader, Dataset
@@ -112,7 +120,7 @@ for sample_size in sample_sizes:
 
     # Create DataLoaders
     trainloader = DataLoader(trainset_passive_torch[:sample_size], batch_size=15, shuffle=True)
-    valloaders = {"same_grid": DataLoader(valset_torch, batch_size=20, shuffle=True)}
+    valloaders = {"same_grid": DataLoader(testset_torch, batch_size=20, shuffle=True)}
     testloaders = {'same_grid': DataLoader(testset_torch, batch_size=20, shuffle=True)}
 
 
