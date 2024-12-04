@@ -1,8 +1,11 @@
 import sys
 import numpy as np
-from scipy.sparse.linalg import spsolve
+from scipy.sparse import diags, eye, kron
+from scipy.sparse.linalg import inv, spsolve
 from scipy.fftpack import dctn
 from scipy.fftpack import idctn
+from matplotlib import pyplot as plt
+
 
 
 def Laplacian(N):
@@ -59,7 +62,7 @@ for i in range(0,n_train):
     trainset_passive.append({'x': f,'y': u})
 
 
-
+n_test=100
 testset = []
 for i in range(0,n_test):
     f = GRF(alpha,beta,gamma,N)
