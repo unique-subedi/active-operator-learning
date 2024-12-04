@@ -70,7 +70,7 @@ dt = T / Nt         # Time step
 
 
 
-
+K=15
 # Generate Passive Training Samples
 n_train = K**2
 trainset_passive = []
