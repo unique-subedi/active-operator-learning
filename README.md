@@ -1,6 +1,6 @@
 # active-operator-learning
 
-This repository provides the code for the experiments presented in the paper "[On the Benefits of Active Data Collection in Operator Learning](https://arxiv.org/abs/2410.19725)." 
+This repository provides the code for the experiments presented in the paper [On the Benefits of Active Data Collection in Operator Learning](https://arxiv.org/abs/2410.19725). 
 
 Each Python file in this repository is written to be self-contained. For example, to implement the estimator alongside the active data collection strategy introduced in the paper for learning the solution operator of heat equations, simply download the file **"linear-estimator-active.py"** from the *heat-equations* directory and run the code. With basic Python packages installed, this file will:  
 
