@@ -10,5 +10,5 @@ For user convenience, each Python file in this repository is written to be self-
 4. Produce a plot showing how the mean squared error (computed on 100 test samples) decays as the number of training samples increases.
 
 
-If you notice any bugs in the code, please feel free to report them at subedi@umich.edu. 
+If you notice any bugs in the code, please send me a quick email at subedi@umich.edu. 
 
